@@ -13,7 +13,7 @@ const pets = [
       color: "Brown",
       specialSkill: "Just picks the tomatoes off of a sandwich instead of requesting a whole new sandwich.",
       type: "dino",
-      imageUrl: "http://www.jozilife.co.za/wp-content/uploads/The-Dino-Expo.jpg"
+      imageUrl: "https://media.npr.org/assets/img/2020/08/04/gettyimages-166352928-1-1_wide-7ca313d19c03d1447250fc8863b68ec60fa96661-s1100-c50.jpg"
     },
     {
       id: 3,
@@ -61,7 +61,7 @@ const pets = [
       color: "Grey",
       specialSkill: "Comfortable in the outdoors for up to eight hours.",
       type: "dino",
-      imageUrl: "http://www.theouthousers.com/images/jck//ThanosCopter/news/grumpasaur.jpg"
+      imageUrl: "https://www.globaltimes.cn/Portals/0/attachment/2022/2022-03-17/34cfc2b4-62b4-489a-9bfe-0cdaeacd1780.jpeg"
     },
     {
       id: 9,
@@ -85,7 +85,7 @@ const pets = [
       color: "Orange",
       specialSkill: "Can be around food without staring creepily at it.",
       type: "dino",
-      imageUrl: "http://www.cantref.com/userfiles/events/walking%20dino.jpg?w=600"
+      imageUrl: "https://www.thedinopark.com/uploads/5/2/0/6/52061569/spino_orig.gif"
     },
     {
       id: 12,
@@ -125,7 +125,7 @@ const pets = [
       color: "Brown",
       specialSkill: "Drives at a safe rate of speed in snow or rain.",
       type: "dino",
-      imageUrl: "https://images.readwrite.com/wp-content/uploads/2018/03/t-rex-dino-quiz-e1490854556549.jpg"
+      imageUrl: "https://images.news18.com/ibnlive/uploads/2021/12/jurassic-dinosaur.png"
     },
     {
       id: 17,
@@ -133,7 +133,7 @@ const pets = [
       color: "Yellow",
       specialSkill: "Does not freak out if you haven’t seen his favorite movie (The Big Lebowski).",
       type: "cat",
-      imageUrl: "http://www.funnycatsite.com/pictures/Close_Up_Yawn.jpg"
+      imageUrl: "https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=49ed3252c0b2ffb49cf8b508892e452d"
     },
     {
       id: 18,
@@ -141,7 +141,7 @@ const pets = [
       color: "Brown",
       specialSkill: "Proficient in air guitar",
       type: "dino",
-      imageUrl: "https://www.nation.co.ke/image/view/-/4078922/highRes/1742693/-/maxw/600/-/1453yvh/-/DINO.jpg"
+      imageUrl: "https://images.newscientist.com/wp-content/uploads/2022/02/16165120/PRI_223886459.jpg?crop=4:3,smart&width=1200&height=900&upscale=true"
     },
     {
       id: 19,
@@ -149,7 +149,7 @@ const pets = [
       color: "Blue",
       specialSkill: "Listens attentively to boring stories.",
       type: "dog",
-      imageUrl: "http://dailynewsdig.com/wp-content/uploads/2014/03/Creative-And-Funny-Dog-Stock-Photography-Pictures-2.jpg"
+      imageUrl: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"
     },
     {
       id: 20,
@@ -244,14 +244,23 @@ const pets = [
   pets.forEach((item, index) => {
     item.id = index+1;
   });
- 
+
 const app = document.querySelector("#app")
 let domString = "";
 for (const animal of pets) {
   domString += `<div class="card" style="width: 18rem;">
   <img src="${animal.imageUrl}" class="card-img-top" alt="...">
   <div class="card-body">
-    <p class="card-text">${animal.name} ${animal.color} ${animal.specialSkill} ${animal.type}</p>
+    <h5 class="card-title">${animal.name}</h5>
+    <p class="card-text">${animal.specialSkill}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">${animal.color}</li>
+    <li class="list-group-item">${animal.type}</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">${animal.type}</a>
+    <a href="#" class="card-link">Pet Directory</a>
   </div>
 </div>`
 }
