@@ -8,4 +8,5 @@ body {
   gap: 20px 300px;
   padding: 20px;
   border-top: 20px;
+  text-align: justify;
 }
