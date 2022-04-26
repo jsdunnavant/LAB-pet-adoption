@@ -10,3 +10,10 @@ body {
   border-top: 20px;
   text-align: justify;
 }
+.buttonDiv {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 50px;
+  gap: 20px 100px;
+}

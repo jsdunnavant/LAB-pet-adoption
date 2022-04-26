@@ -241,14 +241,20 @@ const pets = [
     }
   ];
 
-  pets.forEach((item, index) => {
-    item.id = index+1;
-  });
+ 
 
 const app = document.querySelector("#app")
 let domString = "";
+
+const renderToDom = (divId, textToRender) => {
+  const selectedElement = document.querySelector(divId);
+  selectedElement.innerHTML = textToRender;
+};
+
+
+//about me of the card section
 for (const animal of pets) {
-  domString += `<div class="card" style="width: 18rem;">
+   domString += `<div class="card" style="width: 18rem;">
   <img src="${animal.imageUrl}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">${animal.name}</h5>
@@ -264,4 +270,6 @@ for (const animal of pets) {
   </div>
 </div>`
 }
+//button section
+
 app.innerHTML = domString;
