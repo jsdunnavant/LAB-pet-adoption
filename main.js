@@ -157,7 +157,7 @@ const pets = [
       color: "Black",
       specialSkill: "Uses litter box at appropriate hours.",
       type: "cat",
-      imageUrl: "http://www.funnycatsite.com/pictures/Lazy_White_Cat.jpg"
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-0xqWrYOTxA6pEN2dcsMhqHTAqFFjTr3UyA&usqp=CAU"
     },
     {
       id: 21,
@@ -165,7 +165,7 @@ const pets = [
       color: "Red",
       specialSkill: "Owns a Nintendo Power Glove.",
       type: "dino",
-      imageUrl: "https://img.buzzfeed.com/buzzfeed-static/static/2015-11/2/12/enhanced/webdr15/anigif_enhanced-29802-1446485228-10.gif?crop=250:165;0,0&downsize=715"
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTv4iu7CSmzly-sUIv4LhpW6oQLZ293qvKLQ&usqp=CAU"
     },
     {
       id: 22,
@@ -173,7 +173,7 @@ const pets = [
       color: "Orange",
       specialSkill: "Is comfortable with jokes about his receding hairline.",
       type: "cat",
-      imageUrl: "http://funnyanimalphoto.com/wp-content/uploads/2013/08/cat_caught_mouse_thegatewaypundit.jpg"
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHxkJdxhoTGoLKq0giTfANl93WCYrqxGsCMQ&usqp=CAU"
     },
     {
       id: 23,
@@ -189,7 +189,7 @@ const pets = [
       color: "Brown",
       specialSkill: "Participates in karaoke but does not force others to go out to karaoke.",
       type: "dog",
-      imageUrl: "http://www.dogbreedplus.com/dog_breeds/images/basset-hound-4.jpg"
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT36OGUq8X23zUYSRF3TEcQCcZbxdZvIphwcQ&usqp=CAU"
     },
     {
       id: 25,
@@ -197,7 +197,7 @@ const pets = [
       color: "Red",
       specialSkill: "Knows the words to 4 rap songs.",
       type: "cat",
-      imageUrl: "http://funbk.s3.amazonaws.com/wp-content/uploads/2016/06/funny-cat-video-which-will-make-you-laugh-louder.jpg"
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1723nV8G5jr4k_CkcnflpVABa-4VZpmyMqQ&usqp=CAU"
     },
     {
       id: 26,
@@ -237,14 +237,13 @@ const pets = [
       color: "Red",
       specialSkill: "Doesn’t get weirded out by the word “moist.”",
       type: "dino",
-      imageUrl: "http://lsae2.iypcdn.com/static//modules/uploads/photos/language1/dino-live-22.jpg?119"
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyXXODmmTud1g_N9AKdCnxMqGIR5h4atwdbg&usqp=CAU"
     }
   ];
 
  
 
-const app = document.querySelector("#app")
-let domString = "";
+
 
 const renderToDom = (divId, textToRender) => {
   const selectedElement = document.querySelector(divId);
@@ -253,7 +252,9 @@ const renderToDom = (divId, textToRender) => {
 
 
 //about me of the card section
-for (const animal of pets) {
+const filterFunction = (arr) => {
+  let domString = "";
+for (const animal of arr) {
    domString += `<div class="card" style="width: 18rem;">
   <img src="${animal.imageUrl}" class="card-img-top" alt="...">
   <div class="card-body">
@@ -270,6 +271,66 @@ for (const animal of pets) {
   </div>
 </div>`
 }
-//button section
+renderToDom("#app", domString);
+};
 
-app.innerHTML = domString;
+const filterBtns = () => {
+  let domString = "";
+   domString = `
+  <button type="btn btn-primary" class="cats">Cats</button>
+  <button type="btn btn-secondary" class="dogs">Dogs</button>
+  <button type="btn btn-success" class="dinos">Dinos</button>
+  <button type="btn btn-danger" class="allPets">All Pets</button>
+  `;
+  renderToDom("#buttonDiv", domString);
+}
+
+const filter = (e) => {
+  console.log("dogs" === e.target.id)
+  if ("cats" === e.target.id) {
+    console.log("This is a cat")
+  } else if ("dinos" === e.target.id) {
+    console.log("This is a dino")
+  } else if ("allPets" === e.target.id) {
+    console.log("These are all pets")
+  } else if ("dogs" === e.target.id) {
+    console.log("This is a dog")  
+  }
+  }
+
+  // const eventListeners = () => {
+  //   document.querySelector("#buttonDiv").addEventListener("click", (e) => {
+  //     if (e.target.id === "allPets") {
+  //       renderCards(pets);
+  //     } else if (e.target.id) {
+  //       const types = pets.filter(taco => {
+  //         return (taco.type === e.target.id)
+  //       renderCards(types);
+  //       console.log(types);
+  //     })}
+  
+
+// below breaks everything
+
+// const buttonDiv = document.querySelector("#btn-cats");
+// buttonDiv.addEventListener('click', () => {
+//   console.log("Clicked the button!");
+// });
+// filterButtons ();
+
+// app.innerHTML = domString;
+
+// document.querySelector(".buttonDiv").addEventListener("click", filter)
+
+
+  // document.querySelector("#cats").addEventListener("click", filter);
+  // document.querySelector("#dinos").addEventListener("click", filter);
+  // document.querySelector("#dogs").addEventListener("click", filter);
+  const startApp = () => {
+    filterFunction(pets);
+    renderToDom();
+    filterBtns();
+    filter();
+    // always last
+  };
+  startApp();

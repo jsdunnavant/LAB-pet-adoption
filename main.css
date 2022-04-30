@@ -17,3 +17,15 @@ body {
   padding: 50px;
   gap: 20px 100px;
 }
+.cats {
+  background-color: pink;
+}
+.dogs {
+  background-color: lightgreen;
+}
+.dinos {
+  background-color: lightcoral
+}
+.allPets {
+  background-color: blue;
+}
