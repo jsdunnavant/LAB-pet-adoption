@@ -387,6 +387,7 @@ form.addEventListener('submit', (e) => {
      pets.push(newPetCard);
      filterFunction(pets);
      formModal.hide();
+     form.reset();
   });
 }
 
