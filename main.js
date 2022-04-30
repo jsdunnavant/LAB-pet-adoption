@@ -255,6 +255,9 @@ const renderToDom = (divId, textToRender) => {
 const filterFunction = (arr) => {
   let domString = "";
 for (const animal of arr) {
+  const catType = animal.type ===  "cat";
+  const dogType = animal.type === "dog";
+  const dinoType = animal.type === "dino";
    domString += `<div class="card" style="width: 18rem;">
   <img src="${animal.imageUrl}" class="card-img-top" alt="...">
   <div class="card-body">
@@ -266,8 +269,8 @@ for (const animal of arr) {
     <li class="list-group-item">${animal.type}</li>
   </ul>
   <div class="card-body">
-    <a href="#" class="card-link">${animal.type}</a>
-    <a href="#" class="card-link">Pet Directory</a>
+    <h4 ${catType ? "class= cat-type" : ""} ${dogType ? "class= dog-type" : ""} ${dinoType ? "class= dino-type" : ""} id="list-group-type">${animal.type}</h4>
+    <button id="delete--${animal.id}" class="btn btn-outline-dark">Delete</button>
   </div>
 </div>`
 }
@@ -284,39 +287,25 @@ const filterBtns = () => {
   `;
   renderToDom("#buttonDiv", domString);
 }
-// const filter = (e) => {
-//   console.log("dogs" === e.target.id)
-//   if ("cats" === e.target.id) {
-//     console.log("This is a cat")
-//   } else if ("dinos" === e.target.id) {
-//     console.log("This is a dino")
-//   } else if ("allPets" === e.target.id) {
-//     console.log("These are all pets")
-//   } else if ("dogs" === e.target.id) {
-//     console.log("This is a dog")  
-//   };
 
  const eventListeners = () => {
    document.querySelector("#buttonDiv").addEventListener('click', (e) => {
      if (e.target.id === "allPets") {
-       console.log("all pressed")
+      filterFunction(pets)
      } if (e.target.id === "dogs") {
-       console.log("dog pressed")
+       const dogs = pets.filter((taco) => taco.type === "dog") 
+       filterFunction(dogs)
      } if (e.target.id === "cats") {
-       console.log("cat pressed") 
+       const cats = pets.filter((tacos) => tacos.type === "cat")
+       filterFunction(cats)
      } if (e.target.id === "dinos") {
-       console.log("dino pressed")
+       const dinos = pets.filter((burrito) => burrito.type === "dino")
+       filterFunction(dinos)
      }
    }  
    )}
 
 
-// document.querySelector(".buttonDiv").addEventListener("click", filter)
-
-
-  // document.querySelector("#cats").addEventListener("click", filter);
-  // document.querySelector("#dinos").addEventListener("click", filter);
-  // document.querySelector("#dogs").addEventListener("click", filter);
   const startApp = () => {
     filterFunction(pets);
     filterBtns();
