@@ -241,15 +241,69 @@ const pets = [
     }
   ];
 
- 
-
-
-
 const renderToDom = (divId, textToRender) => {
   const selectedElement = document.querySelector(divId);
   selectedElement.innerHTML = textToRender
 };
 
+const myPetModal = () => {
+  const domString = `
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-pet">
+    Add pet for adoption
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="add-pet" tabindex="-1" aria-labelledby="add-pet" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen-md-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Pet Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modal-body">
+          <form>
+          <div class="form-floating mb-3">
+            <input class="form-control form-control-lg" type="text" placeholder="name" id="name" aria-label="name" required>
+            <label for="name">Pet Name</label>
+          </div>
+      
+          <div class="form-floating mb-3">
+            <input class="form-control form-control-lg" type="text" placeholder="color" id="color" aria-label="color" required>
+            <label for="color">Color</label>
+          </div>
+      
+          <div class="form-floating mb-3">
+           <input class="form-control form-control-lg" type="text" placeholder="specialSkill" id="specialSkill" aria-label="specialSkill" required>
+           <label for="specialSkill">Special Skill</label>
+          </div>
+          <div class="form-floating mb-3">
+           <input class="form-control form-control-lg" type="text" placeholder="imageUrl" id="imageUrl" aria-label="imageUrl" required>
+           <label for="imageUrl">Image URL</label>
+          </div>
+          <div class="form-floating mb-3">
+            <select class="form-select form-control-lg" id="type" aria-label="type" required>
+              <option value="">Select a type</option>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+              <option value="dino">Dino</option>
+            </select>
+            <label for="type">Type</label>
+          </div> 
+      
+          <button 
+            type="submit" 
+            class="btn btn-success" 
+          >
+            Submit
+          </button>
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  renderToDom('#myPetContainer', domString);
+};
 
 //about me of the card section
 const filterFunction = (arr) => {
@@ -289,6 +343,8 @@ const filterBtns = () => {
 }
 
  const eventListeners = () => {
+  const formModal = new bootstrap.Modal(document.querySelector('#add-pet'));
+
    document.querySelector("#buttonDiv").addEventListener('click', (e) => {
      if (e.target.id === "allPets") {
       filterFunction(pets)
@@ -302,14 +358,42 @@ const filterBtns = () => {
        const dinos = pets.filter((burrito) => burrito.type === "dino")
        filterFunction(dinos)
      }
-   }  
-   )}
+   } );
+   document.querySelector('#app').addEventListener('click', (e) => {
+  
+    if (e.target.id) {
+      const [method, id] = e.target.id.split("--");
+      // find the index of the object in the array
+      const index = pets.findIndex ((animal)=> animal.id === parseInt(id));
+  
+      if (e.target.id.includes('delete')) { //checks to see if delete id matches before using splice method
+        pets.splice(index, 1);   //uses splice method to delete index [0], and only 1 delete count
+        filterFunction(pets); 
+      }
+    }
+  });
+const form = document.querySelector('form');
 
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const newPetCard = {
+      name: document.querySelector('#name').value,
+      color: document.querySelector('#color').value,
+      specialSkill: document.querySelector('#specialSkill').value,
+      type: document.querySelector("#type").value,
+      imageUrl: document.querySelector("#imageUrl").value,
+    };
+  
+     pets.push(newPetCard);
+     filterFunction(pets);
+     formModal.hide();
+  });
+}
 
   const startApp = () => {
+    myPetModal();
     filterFunction(pets);
     filterBtns();
     eventListeners()// always last
   };
-  startApp();
-  
+  startApp(); 

@@ -43,3 +43,7 @@ h4 {
 .dino-type {
   background-color: rgb(235, 30, 254);
 }
+#myPetContainer {
+  display: flex;
+  justify-content: center;
+}
