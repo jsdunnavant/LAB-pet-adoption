@@ -247,7 +247,7 @@ const pets = [
 
 const renderToDom = (divId, textToRender) => {
   const selectedElement = document.querySelector(divId);
-  selectedElement.innerHTML = textToRender;
+  selectedElement.innerHTML = textToRender
 };
 
 
@@ -277,48 +277,39 @@ renderToDom("#app", domString);
 const filterBtns = () => {
   let domString = "";
    domString = `
-  <button type="btn btn-primary" class="cats">Cats</button>
-  <button type="btn btn-secondary" class="dogs">Dogs</button>
-  <button type="btn btn-success" class="dinos">Dinos</button>
-  <button type="btn btn-danger" class="allPets">All Pets</button>
+  <button type="btn btn-primary" id="cats" class="cats">Cats</button>
+  <button type="btn btn-secondary" id="dogs" class="dogs">Dogs</button>
+  <button type="btn btn-success" id="dinos" class="dinos">Dinos</button>
+  <button type="btn btn-danger" id="allPets" class="allPets">All Pets</button>
   `;
   renderToDom("#buttonDiv", domString);
 }
+// const filter = (e) => {
+//   console.log("dogs" === e.target.id)
+//   if ("cats" === e.target.id) {
+//     console.log("This is a cat")
+//   } else if ("dinos" === e.target.id) {
+//     console.log("This is a dino")
+//   } else if ("allPets" === e.target.id) {
+//     console.log("These are all pets")
+//   } else if ("dogs" === e.target.id) {
+//     console.log("This is a dog")  
+//   };
 
-const filter = (e) => {
-  console.log("dogs" === e.target.id)
-  if ("cats" === e.target.id) {
-    console.log("This is a cat")
-  } else if ("dinos" === e.target.id) {
-    console.log("This is a dino")
-  } else if ("allPets" === e.target.id) {
-    console.log("These are all pets")
-  } else if ("dogs" === e.target.id) {
-    console.log("This is a dog")  
-  }
-  }
+ const eventListeners = () => {
+   document.querySelector("#buttonDiv").addEventListener('click', (e) => {
+     if (e.target.id === "allPets") {
+       console.log("all pressed")
+     } if (e.target.id === "dogs") {
+       console.log("dog pressed")
+     } if (e.target.id === "cats") {
+       console.log("cat pressed") 
+     } if (e.target.id === "dinos") {
+       console.log("dino pressed")
+     }
+   }  
+   )}
 
-  // const eventListeners = () => {
-  //   document.querySelector("#buttonDiv").addEventListener("click", (e) => {
-  //     if (e.target.id === "allPets") {
-  //       renderCards(pets);
-  //     } else if (e.target.id) {
-  //       const types = pets.filter(taco => {
-  //         return (taco.type === e.target.id)
-  //       renderCards(types);
-  //       console.log(types);
-  //     })}
-  
-
-// below breaks everything
-
-// const buttonDiv = document.querySelector("#btn-cats");
-// buttonDiv.addEventListener('click', () => {
-//   console.log("Clicked the button!");
-// });
-// filterButtons ();
-
-// app.innerHTML = domString;
 
 // document.querySelector(".buttonDiv").addEventListener("click", filter)
 
@@ -328,9 +319,8 @@ const filter = (e) => {
   // document.querySelector("#dogs").addEventListener("click", filter);
   const startApp = () => {
     filterFunction(pets);
-    renderToDom();
     filterBtns();
-    filter();
-    // always last
+    eventListeners()// always last
   };
   startApp();
+  
